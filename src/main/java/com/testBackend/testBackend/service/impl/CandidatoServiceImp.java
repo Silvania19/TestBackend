@@ -9,6 +9,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.List;
+
 @Service
 public class CandidatoServiceImp implements CandidatoService {
 
@@ -22,5 +25,16 @@ public class CandidatoServiceImp implements CandidatoService {
     public Candidato guardar(CrearCandidatoDto candidatoDto) {
         Candidato candidato = modelMapper.map(candidatoDto, Candidato.class);
         return candidatoRepository.save(candidato);
+    }
+
+    @Override
+    public Candidato buscarPorId(Integer idCandidato) {
+        return candidatoRepository.findById(idCandidato)
+                .orElseThrow( () -> new EntityNotFoundException("No se encontro el candidato solicitado"));
+    }
+
+    @Override
+    public List<Candidato> obtenerTodos() {
+        return candidatoRepository.findAll();
     }
 }

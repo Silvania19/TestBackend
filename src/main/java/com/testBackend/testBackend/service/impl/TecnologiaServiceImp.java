@@ -1,0 +1,39 @@
+package com.testBackend.testBackend.service.impl;
+
+import com.testBackend.testBackend.models.Tecnologia;
+import com.testBackend.testBackend.models.dto.CrearTecnologiaDto;
+import com.testBackend.testBackend.repository.TecnologiaRepository;
+import com.testBackend.testBackend.service.TecnologiaService;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.persistence.EntityNotFoundException;
+import java.util.List;
+
+@Service
+public class TecnologiaServiceImp implements TecnologiaService {
+    @Autowired
+    private TecnologiaRepository tecnologiaRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    @Override
+    public Tecnologia guardar(CrearTecnologiaDto tecnologiaDto) {
+        return tecnologiaRepository.save(modelMapper.map(tecnologiaDto, Tecnologia.class));
+    }
+
+    @Override
+    public Tecnologia buscarPorId(Integer idTecnologia) {
+        return tecnologiaRepository.findById(idTecnologia)
+                .orElseThrow( () -> new EntityNotFoundException("No se encontro la tecnologia solicitado"));
+
+    }
+
+    @Override
+    public List<Tecnologia> obtenerTodos() {
+        return tecnologiaRepository.findAll();
+    }
+
+}
