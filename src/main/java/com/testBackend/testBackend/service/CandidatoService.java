@@ -16,4 +16,6 @@ public interface CandidatoService {
     void eliminarPorId(Integer idCandidato);
 
     Candidato actualizar(CandidatoDto candidatoDto);
+
+    List<Candidato> filtrarPorTecnologia(String nombreTecnologia);
 }

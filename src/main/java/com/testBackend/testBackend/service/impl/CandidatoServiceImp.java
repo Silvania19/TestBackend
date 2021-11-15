@@ -67,4 +67,9 @@ public class CandidatoServiceImp implements CandidatoService {
             throw new RequiredDataException("Datos incorrectos");
         }
     }
+
+    @Override
+    public List<Candidato> filtrarPorTecnologia(String nombreTecnologia) {
+        return null;
+    }
 }

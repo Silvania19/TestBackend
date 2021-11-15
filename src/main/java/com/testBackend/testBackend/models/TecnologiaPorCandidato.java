@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "candidatos")
+@Table(name = "tecnologias_por_candidato")
 public class TecnologiaPorCandidato {
 
     @Id

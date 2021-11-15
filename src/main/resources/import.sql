@@ -12,3 +12,9 @@ INSERT INTO  candidatos (apellido, fecha_nacimiento, nombre, numero_documento, i
 INSERT INTO  tecnologias (nombre, version) VALUES ('java', '1');
 INSERT INTO  tecnologias (nombre, version) VALUES ('java', '2');
 INSERT INTO  tecnologias (nombre, version) VALUES ('angular', '1');
+
+/**candidato por tecnologias*/
+
+INSERT INTO  tecnologias_por_candidato (anios_experiencia, id_candidato, id_tecnologia) VALUES (1, 1, 3);
+INSERT INTO  tecnologias_por_candidato (anios_experiencia, id_candidato, id_tecnologia) VALUES (4, 2, 1);
+INSERT INTO  tecnologias_por_candidato (anios_experiencia, id_candidato, id_tecnologia) VALUES (3, 1, 1);
