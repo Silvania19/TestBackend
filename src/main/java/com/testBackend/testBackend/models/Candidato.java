@@ -42,7 +42,7 @@ public class Candidato {
     @Column(name = "fecha_nacimiento")
     @Temporal(TemporalType.DATE)
     @Past
-    @NotBlank
+    @NonNull
     private Date fechaNacimiento;
 
     @Column(name = "numero_documento")

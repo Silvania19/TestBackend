@@ -11,6 +11,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,6 +49,18 @@ public class CandidatoController {
         List<Candidato> candidatoDtoLista = candidatoService.obtenerTodos();
         List<CandidatoDto>candidatoDtos= modelMapper.map(candidatoDtoLista, new TypeToken<List<CandidatoDto>>() {}.getType());
         return new ResponseEntity<>(candidatoDtos, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/eliminar/{idCandidato}")
+    public ResponseEntity eliminarCandidato(@PathVariable Integer idCandidato){
+        candidatoService.eliminarPorId(idCandidato);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping("actualizar/{idCandidato}")
+    public ResponseEntity<CandidatoDto> actualizarCandidato(@RequestBody CandidatoDto candidatoDto){
+        Candidato candidato= candidatoService.actualizar(candidatoDto);
+        return new ResponseEntity<>(modelMapper.map(candidato, CandidatoDto.class), HttpStatus.OK);
     }
 
 

@@ -12,4 +12,8 @@ public interface CandidatoService {
     Candidato buscarPorId(Integer idCandidato);
 
     List<Candidato> obtenerTodos();
+
+    void eliminarPorId(Integer idCandidato);
+
+    Candidato actualizar(CandidatoDto candidatoDto);
 }
