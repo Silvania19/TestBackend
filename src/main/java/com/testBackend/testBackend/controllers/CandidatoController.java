@@ -64,7 +64,7 @@ public class CandidatoController {
     }
 
     @GetMapping("/listarPorTecnologia/{nombreTecnologia}")
-    public ResponseEntity<List<CandidatoDto>> obtenerCandidatos(@PathVariable String nombreTecnologia){
+    public ResponseEntity<List<CandidatoDto>> obtenerCandidatosPorTecnologia(@PathVariable String nombreTecnologia){
         List<Candidato> candidatoDtoLista = candidatoService.filtrarPorTecnologia(nombreTecnologia);
         List<CandidatoDto>candidatoDtos= modelMapper.map(candidatoDtoLista, new TypeToken<List<CandidatoDto>>() {}.getType());
         return new ResponseEntity<>(candidatoDtos, HttpStatus.OK);

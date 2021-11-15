@@ -3,16 +3,19 @@ package com.testBackend.testBackend.service.impl;
 import com.testBackend.testBackend.exceptions.ErrorDatosException;
 import com.testBackend.testBackend.exceptions.RequiredDataException;
 import com.testBackend.testBackend.models.Candidato;
+import com.testBackend.testBackend.models.TecnologiaPorCandidato;
 import com.testBackend.testBackend.models.dto.CandidatoDto;
 import com.testBackend.testBackend.models.dto.CrearCandidatoDto;
 import com.testBackend.testBackend.repository.CandidatoRepository;
 import com.testBackend.testBackend.service.CandidatoService;
+import com.testBackend.testBackend.service.TecnologiaPorCandidatoService;
 import lombok.extern.java.Log;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Log
@@ -21,6 +24,9 @@ public class CandidatoServiceImp implements CandidatoService {
 
     @Autowired
     private CandidatoRepository candidatoRepository;
+
+    @Autowired
+    private TecnologiaPorCandidatoService tecnologiaPorCandidatoService;
 
     @Autowired
     ModelMapper modelMapper;
@@ -70,6 +76,13 @@ public class CandidatoServiceImp implements CandidatoService {
 
     @Override
     public List<Candidato> filtrarPorTecnologia(String nombreTecnologia) {
-        return null;
+
+        List<Candidato> candidatosFiltrados= new ArrayList<>();
+        List<TecnologiaPorCandidato> tecnologiaPorCandidatoList= tecnologiaPorCandidatoService.filtrarPorNombreTecnologia(nombreTecnologia);
+
+        for (TecnologiaPorCandidato tecnologiaPorCandidato : tecnologiaPorCandidatoList){
+            candidatosFiltrados.add(tecnologiaPorCandidato.getCandidato());
+        }
+        return candidatosFiltrados;
     }
 }
