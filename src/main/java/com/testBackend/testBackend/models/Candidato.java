@@ -19,6 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
@@ -27,7 +28,7 @@ import java.util.Date;
 @Entity
 @Builder
 @Table(name = "candidatos")
-public class Candidato {
+public class Candidato implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

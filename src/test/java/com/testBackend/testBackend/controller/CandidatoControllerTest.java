@@ -1,6 +1,5 @@
 package com.testBackend.testBackend.controller;
 
-import com.google.gson.Gson;
 import com.testBackend.testBackend.controllers.CandidatoController;
 import com.testBackend.testBackend.service.CandidatoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,13 +10,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-
-import static com.testBackend.testBackend.Utils.EntityUtil.getCandidato;
-import static com.testBackend.testBackend.Utils.EntityUtil.getCrearCandidatoDto;
+import static com.testBackend.testBackend.Utils.EntityUtil.getCandidatoTodos;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = CandidatoController.class)
@@ -37,18 +33,15 @@ public class CandidatoControllerTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.initMocks(this);;
+        MockitoAnnotations.initMocks(this);
     }
 
-    @Test
-    public void guardarCandidatoOk()throws Exception{
 
-        when(candidatoService.guardar(getCrearCandidatoDto())).thenReturn(getCandidato());
-        String candidatoDtoJson = new Gson().toJson(getCrearCandidatoDto());
-        mockMvc.perform(post("/api/candidato/guardar")
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(candidatoDtoJson))
-                .andExpect(status().isCreated());
+    @Test
+    public void obtenerCandidatosOk()throws Exception{
+        when(candidatoService.obtenerTodos()).thenReturn(getCandidatoTodos());
+        mockMvc.perform(get("/api/candidato/listar"))
+                .andExpect(status().isOk());
     }
 
 }
