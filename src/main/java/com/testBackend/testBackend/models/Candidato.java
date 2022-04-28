@@ -1,5 +1,6 @@
 package com.testBackend.testBackend.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -46,6 +47,7 @@ public class Candidato implements Serializable {
     @Temporal(TemporalType.DATE)
     @Past
     @NonNull
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date fechaNacimiento;
 
     @Column(name = "numero_documento")

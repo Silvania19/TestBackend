@@ -4,7 +4,6 @@ import com.testBackend.testBackend.models.Candidato;
 import com.testBackend.testBackend.models.TipoDocumento;
 import com.testBackend.testBackend.models.dto.CrearCandidatoDto;
 import com.testBackend.testBackend.models.dto.TipoDocumentoDto;
-import org.apache.catalina.LifecycleState;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class EntityUtil {
                 .nombre("candidato1")
                 .apellido("ortega")
                 .numeroDocumento("11313111")
-                .fechaNacimiento(Date.from(Instant.now()))
+                .fechaNacimiento(new Date())
                 .tipoDocumento(getTipoDocumento())
                 .build();
     }
@@ -36,7 +35,7 @@ public class EntityUtil {
                 .nombre("candidato1")
                 .apellido("ortega")
                 .numeroDocumento("11313111")
-                .fechaNacimiento(new Date(2000, 06, 04))
+                .fechaNacimiento(new Date())
                 .tipoDocumento(getTipoDocumentoDto())
                 .build();
     }
