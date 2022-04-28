@@ -1,6 +1,8 @@
 package com.testBackend.testBackend.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -18,14 +20,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "candidatos")
-public class Candidato {
+public class Candidato implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +46,8 @@ public class Candidato {
     @Column(name = "fecha_nacimiento")
     @Temporal(TemporalType.DATE)
     @Past
-    @NotBlank
+    @NonNull
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date fechaNacimiento;
 
     @Column(name = "numero_documento")
